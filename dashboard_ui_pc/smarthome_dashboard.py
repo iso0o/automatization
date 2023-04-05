@@ -9,7 +9,7 @@ from kivy.uix.button import Button
 from kivy.core.window import Window
 from kivy.uix.image import Image
 from kivy.uix.gridlayout import GridLayout
-from kivy.uix.asyncimage import AsyncImage
+
 
 Window.clearcolor = (1, 1, 1, 1)  # установка белого фона
 Window.size = (900, 600)
