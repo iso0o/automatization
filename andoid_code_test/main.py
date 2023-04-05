@@ -15,6 +15,403 @@ from kivy.clock import Clock
 Window.clearcolor = (1, 1, 1, 1)  # установка белого фона
 Window.size = (900, 600)
 
+
+class KettleScreen(BoxLayout):
+    def __init__(self, **kwargs):
+        super(KettleScreen, self).__init__(**kwargs)
+        self.orientation = "vertical"  # задаем ориентацию элементов
+
+        # добавляем вертикальный BoxLayout для изображений и надписей
+        images_labels_layout = BoxLayout(size_hint=(1, 0.8), padding=200, spacing=150)
+        self.add_widget(images_labels_layout)
+
+        # добавляем контейнер для чайника
+        kettle_layout = BoxLayout(orientation='vertical', size_hint=(None, None), size=(100, 150))
+        images_labels_layout.add_widget(kettle_layout)
+
+        # добавляем  гиф-изображение чайника
+        kettle_image = AsyncImage(source="kettle.gif", size_hint=(None, None), anim_delay= 1/5 , size=(100, 100),pos_hint={'center_x': 0.5})
+        kettle_layout.add_widget(kettle_image)
+
+        kettle_label = Label(text="Вы выбрали чайник", font_size='20sp', bold=True, color=(0, 0, 0, 100), size_hint=(None, None),
+                         size=(100, 50), pos_hint={'center_x': 0.5})
+        kettle_layout.add_widget(kettle_label)
+
+        # добавление кнопки "Назад"
+        main_kitchen_button = Button(text="Назад", font_size='14sp', size_hint=(0.2, 0.1), color=(1, 1, 1, 100),
+                                  background_color=(0, 0, 0, 100), pos_hint={'x': 0, 'y': 0.1})
+        main_kitchen_button.bind(on_press=self.go_to_kitchen)
+        self.add_widget(main_kitchen_button)
+
+    def go_to_kitchen(self, *args):
+        # создание экземпляра класса Kitchen и отображение его на экране
+        kitchen = Kitchen()
+        self.clear_widgets()
+        self.add_widget(kitchen)
+
+class BurnerScreen(BoxLayout):
+    def __init__(self, **kwargs):
+        super(BurnerScreen, self).__init__(**kwargs)
+        self.orientation = "vertical"  # задаем ориентацию элементов
+
+        # добавляем вертикальный BoxLayout для изображений и надписей
+        images_labels_layout = BoxLayout(size_hint=(1, 0.8), padding=200, spacing=150)
+        self.add_widget(images_labels_layout)
+
+        # добавляем контейнер для конфорки
+        burner_layout = BoxLayout(orientation='vertical', size_hint=(None, None), size=(100, 150))
+        images_labels_layout.add_widget(burner_layout)
+
+        # добавляем  гиф-изображение конфорки
+        burner_image = AsyncImage(source="burner.gif", size_hint=(None, None), anim_delay= 1/5 , size=(100, 100),pos_hint={'center_x': 0.5})
+        burner_layout.add_widget(burner_image)
+
+        burner_label = Label(text="Вы выбрали конфорку", font_size='20sp', bold=True, color=(0, 0, 0, 100), size_hint=(None, None),
+                         size=(100, 50), pos_hint={'center_x': 0.5})
+        burner_layout.add_widget(burner_label)
+
+        # добавление кнопки "Назад"
+        main_kitchen_button = Button(text="Назад", font_size='14sp', size_hint=(0.2, 0.1), color=(1, 1, 1, 100),
+                                  background_color=(0, 0, 0, 100), pos_hint={'x': 0, 'y': 0.1})
+        main_kitchen_button.bind(on_press=self.go_to_kitchen)
+        self.add_widget(main_kitchen_button)
+
+    def go_to_kitchen(self, *args):
+        # создание экземпляра класса Kitchen и отображение его на экране
+        kitchen = Kitchen()
+        self.clear_widgets()
+        self.add_widget(kitchen)
+
+class FridgeScreen(BoxLayout):
+    def __init__(self, **kwargs):
+        super(FridgeScreen, self).__init__(**kwargs)
+        self.orientation = "vertical"  # задаем ориентацию элементов
+
+        # добавляем вертикальный BoxLayout для изображений и надписей
+        images_labels_layout = BoxLayout(size_hint=(1, 0.8), padding=200, spacing=150)
+        self.add_widget(images_labels_layout)
+
+        # добавляем контейнер для холодильника
+        fridge_layout = BoxLayout(orientation='vertical', size_hint=(None, None), size=(100, 150))
+        images_labels_layout.add_widget(fridge_layout)
+
+        # добавляем  гиф-изображение холодильника
+        fridge_image = AsyncImage(source="fridge.gif", size_hint=(None, None), anim_delay= 1/5 , size=(100, 100),pos_hint={'center_x': 0.5})
+        fridge_layout.add_widget(fridge_image)
+
+        fridge_label = Label(text="Вы выбрали холодильник", font_size='20sp', bold=True, color=(0, 0, 0, 100), size_hint=(None, None),
+                         size=(100, 50), pos_hint={'center_x': 0.5})
+        fridge_layout.add_widget(fridge_label)
+
+        # добавление кнопки "Назад"
+        main_kitchen_button = Button(text="Назад", font_size='14sp', size_hint=(0.2, 0.1), color=(1, 1, 1, 100),
+                                  background_color=(0, 0, 0, 100), pos_hint={'x': 0, 'y': 0.1})
+        main_kitchen_button.bind(on_press=self.go_to_kitchen)
+        self.add_widget(main_kitchen_button)
+
+    def go_to_kitchen(self, *args):
+        # создание экземпляра класса Kitchen и отображение его на экране
+        kitchen = Kitchen()
+        self.clear_widgets()
+        self.add_widget(kitchen)
+
+class DoorScreen(BoxLayout):
+    def __init__(self, **kwargs):
+        super(DoorScreen, self).__init__(**kwargs)
+        self.orientation = "vertical"  # задаем ориентацию элементов
+
+        # добавляем вертикальный BoxLayout для изображений и надписей
+        images_labels_layout = BoxLayout(size_hint=(1, 0.8), padding=200, spacing=150)
+        self.add_widget(images_labels_layout)
+
+        # добавляем контейнер для гаражной двери
+        door_layout = BoxLayout(orientation='vertical', size_hint=(None, None), size=(100, 150))
+        images_labels_layout.add_widget(door_layout)
+
+        # добавляем  гиф-изображение гаражной двери
+        door_image = AsyncImage(source="door.gif", size_hint=(None, None), anim_delay= 1/5 , size=(100, 100),pos_hint={'center_x': 0.5})
+        door_layout.add_widget(door_image)
+
+        door_label = Label(text="Вы выбрали гаражную дверь", font_size='20sp', bold=True, color=(0, 0, 0, 100), size_hint=(None, None),
+                         size=(100, 50), pos_hint={'center_x': 0.5})
+        door_layout.add_widget(door_label)
+
+        # добавление кнопки "Назад"
+        main_garage_button = Button(text="Назад", font_size='14sp', size_hint=(0.2, 0.1), color=(1, 1, 1, 100),
+                                  background_color=(0, 0, 0, 100), pos_hint={'x': 0, 'y': 0.1})
+        main_garage_button.bind(on_press=self.go_to_garage)
+        self.add_widget(main_garage_button)
+
+    def go_to_garage(self, *args):
+        # создание экземпляра класса Garage и отображение его на экране
+        garage = Garage()
+        self.clear_widgets()
+        self.add_widget(garage)
+
+class ColumnScreen(BoxLayout):
+    def __init__(self, **kwargs):
+        super(ColumnScreen, self).__init__(**kwargs)
+        self.orientation = "vertical"  # задаем ориентацию элементов
+
+        # добавляем вертикальный BoxLayout для изображений и надписей
+        images_labels_layout = BoxLayout(size_hint=(1, 0.8), padding=200, spacing=150)
+        self.add_widget(images_labels_layout)
+
+        # добавляем контейнер для колонки
+        column_layout = BoxLayout(orientation='vertical', size_hint=(None, None), size=(100, 150))
+        images_labels_layout.add_widget(column_layout)
+
+        # добавляем  гиф-изображение колонки
+        column_image = AsyncImage(source="column.gif", size_hint=(None, None), anim_delay= 1/5 , size=(100, 100),pos_hint={'center_x': 0.5})
+        column_layout.add_widget(column_image)
+
+        column_label = Label(text="Вы выбрали колонку", font_size='20sp', bold=True, color=(0, 0, 0, 100), size_hint=(None, None),
+                         size=(100, 50), pos_hint={'center_x': 0.5})
+        column_layout.add_widget(column_label)
+
+        # добавление кнопки "Назад"
+        main_garage_button = Button(text="Назад", font_size='14sp', size_hint=(0.2, 0.1), color=(1, 1, 1, 100),
+                                  background_color=(0, 0, 0, 100), pos_hint={'x': 0, 'y': 0.1})
+        main_garage_button.bind(on_press=self.go_to_garage)
+        self.add_widget(main_garage_button)
+
+    def go_to_garage(self, *args):
+        # создание экземпляра класса Garage и отображение его на экране
+        garage = Garage()
+        self.clear_widgets()
+        self.add_widget(garage)
+
+class LightScreen(BoxLayout):
+    def __init__(self, **kwargs):
+        super(LightScreen, self).__init__(**kwargs)
+        self.orientation = "vertical"  # задаем ориентацию элементов
+
+        # добавляем вертикальный BoxLayout для изображений и надписей
+        images_labels_layout = BoxLayout(size_hint=(1, 0.8), padding=200, spacing=150)
+        self.add_widget(images_labels_layout)
+
+        # добавляем контейнер для света
+        light_layout = BoxLayout(orientation='vertical', size_hint=(None, None), size=(100, 150))
+        images_labels_layout.add_widget(light_layout)
+
+        # добавляем  гиф-изображение света
+        light_image = AsyncImage(source="light.gif", size_hint=(None, None), anim_delay= 1/5 , size=(100, 100),pos_hint={'center_x': 0.5})
+        light_layout.add_widget(light_image)
+
+        light_label = Label(text="Вы выбрали свет", font_size='20sp', bold=True, color=(0, 0, 0, 100), size_hint=(None, None),
+                         size=(100, 50), pos_hint={'center_x': 0.5})
+        light_layout.add_widget(light_label)
+
+        # добавление кнопки "Назад"
+        main_bedroom_button = Button(text="Назад", font_size='14sp', size_hint=(0.2, 0.1), color=(1, 1, 1, 100),
+                                  background_color=(0, 0, 0, 100), pos_hint={'x': 0, 'y': 0.1})
+        main_bedroom_button.bind(on_press=self.go_to_bedroom)
+        self.add_widget(main_bedroom_button)
+
+    def go_to_bedroom(self, *args):
+        # создание экземпляра класса Bedroom и отображение его на экране
+        bedroom = Bedroom()
+        self.clear_widgets()
+        self.add_widget(bedroom)
+
+class HumidifierScreen(BoxLayout):
+    def __init__(self, **kwargs):
+        super(HumidifierScreen, self).__init__(**kwargs)
+        self.orientation = "vertical"  # задаем ориентацию элементов
+
+        # добавляем вертикальный BoxLayout для изображений и надписей
+        images_labels_layout = BoxLayout(size_hint=(1, 0.8), padding=200, spacing=150)
+        self.add_widget(images_labels_layout)
+
+        # добавляем контейнер для увлажнителя воздуха
+        humidifier_layout = BoxLayout(orientation='vertical', size_hint=(None, None), size=(100, 150))
+        images_labels_layout.add_widget(humidifier_layout)
+
+        # добавляем  гиф-изображение увлажнителя воздуха
+        humidifier_image = AsyncImage(source="humidifier.gif", size_hint=(None, None), anim_delay= 1/5 , size=(100, 100),pos_hint={'center_x': 0.5})
+        humidifier_layout.add_widget(humidifier_image)
+
+        humidifier_label = Label(text="Вы выбрали увлажнитель воздуха", font_size='20sp', bold=True, color=(0, 0, 0, 100), size_hint=(None, None),
+                         size=(100, 50), pos_hint={'center_x': 0.5})
+        humidifier_layout.add_widget(humidifier_label)
+
+        # добавление кнопки "Назад"
+        main_bedroom_button = Button(text="Назад", font_size='14sp', size_hint=(0.2, 0.1), color=(1, 1, 1, 100),
+                                  background_color=(0, 0, 0, 100), pos_hint={'x': 0, 'y': 0.1})
+        main_bedroom_button.bind(on_press=self.go_to_bedroom)
+        self.add_widget(main_bedroom_button)
+
+    def go_to_bedroom(self, *args):
+        # создание экземпляра класса Bedroom и отображение его на экране
+        bedroom = Bedroom()
+        self.clear_widgets()
+        self.add_widget(bedroom)
+
+class TempcontrScreen(BoxLayout):
+    def __init__(self, **kwargs):
+        super(TempcontrScreen, self).__init__(**kwargs)
+        self.orientation = "vertical"  # задаем ориентацию элементов
+
+        # добавляем вертикальный BoxLayout для изображений и надписей
+        images_labels_layout = BoxLayout(size_hint=(1, 0.8), padding=200, spacing=150)
+        self.add_widget(images_labels_layout)
+
+        # добавляем контейнер для датчика температуры воды
+        tempcontr_layout = BoxLayout(orientation='vertical', size_hint=(None, None), size=(100, 150))
+        images_labels_layout.add_widget(tempcontr_layout)
+
+        # добавляем  гиф-изображение датчика температуры воды
+        tempcontr_image = AsyncImage(source="tempcontr.gif", size_hint=(None, None), anim_delay= 1/5 , size=(100, 100),pos_hint={'center_x': 0.5})
+        tempcontr_layout.add_widget(tempcontr_image)
+
+        tempcontr_label = Label(text="Вы выбрали терморегулятор", font_size='20sp', bold=True, color=(0, 0, 0, 100), size_hint=(None, None),
+                         size=(100, 50), pos_hint={'center_x': 0.5})
+        tempcontr_layout.add_widget(tempcontr_label)
+
+        # добавление кнопки "Назад"
+        main_bathroom_button = Button(text="Назад", font_size='14sp', size_hint=(0.2, 0.1), color=(1, 1, 1, 100),
+                                  background_color=(0, 0, 0, 100), pos_hint={'x': 0, 'y': 0.1})
+        main_bathroom_button.bind(on_press=self.go_to_bathroom)
+        self.add_widget(main_bathroom_button)
+
+    def go_to_bathroom(self, *args):
+        # создание экземпляра класса Bathroom и отображение его на экране
+        bathroom = Bathroom()
+        self.clear_widgets()
+        self.add_widget(bathroom)
+
+class WashingScreen(BoxLayout):
+    def __init__(self, **kwargs):
+        super(WashingScreen, self).__init__(**kwargs)
+        self.orientation = "vertical"  # задаем ориентацию элементов
+
+        # добавляем вертикальный BoxLayout для изображений и надписей
+        images_labels_layout = BoxLayout(size_hint=(1, 0.8), padding=200, spacing=150)
+        self.add_widget(images_labels_layout)
+
+        # добавляем контейнер для стиральной машины
+        washing_layout = BoxLayout(orientation='vertical', size_hint=(None, None), size=(100, 150))
+        images_labels_layout.add_widget(washing_layout)
+
+        # добавляем  гиф-изображение стиральной машины
+        washing_image = AsyncImage(source="washing.gif", size_hint=(None, None), anim_delay= 1/5 , size=(100, 100),pos_hint={'center_x': 0.5})
+        washing_layout.add_widget(washing_image)
+
+        washing_label = Label(text="Вы выбрали стиральную машину", font_size='20sp', bold=True, color=(0, 0, 0, 100), size_hint=(None, None),
+                         size=(100, 50), pos_hint={'center_x': 0.5})
+        washing_layout.add_widget(washing_label)
+
+        # добавление кнопки "Назад"
+        main_bathroom_button = Button(text="Назад", font_size='14sp', size_hint=(0.2, 0.1), color=(1, 1, 1, 100),
+                                  background_color=(0, 0, 0, 100), pos_hint={'x': 0, 'y': 0.1})
+        main_bathroom_button.bind(on_press=self.go_to_bathroom)
+        self.add_widget(main_bathroom_button)
+
+    def go_to_bathroom(self, *args):
+        # создание экземпляра класса Bathroom и отображение его на экране
+        bathroom = Bathroom()
+        self.clear_widgets()
+        self.add_widget(bathroom)
+
+class TvScreen(BoxLayout):
+    def __init__(self, **kwargs):
+        super(TvScreen, self).__init__(**kwargs)
+        self.orientation = "vertical"  # задаем ориентацию элементов
+
+        # добавляем вертикальный BoxLayout для изображений и надписей
+        images_labels_layout = BoxLayout(size_hint=(1, 0.8), padding=200, spacing=150)
+        self.add_widget(images_labels_layout)
+
+        # добавляем контейнер для телевизора
+        tv_layout = BoxLayout(orientation='vertical', size_hint=(None, None), size=(100, 150))
+        images_labels_layout.add_widget(tv_layout)
+
+        # добавляем  гиф-изображение телевизора
+        tv_image = AsyncImage(source="tv.gif", size_hint=(None, None), anim_delay= 1/5 , size=(100, 100),pos_hint={'center_x': 0.5})
+        tv_layout.add_widget(tv_image)
+
+        tv_label = Label(text="Вы выбрали телевизор", font_size='20sp', bold=True, color=(0, 0, 0, 100), size_hint=(None, None),
+                         size=(100, 50), pos_hint={'center_x': 0.5})
+        tv_layout.add_widget(tv_label)
+
+        # добавление кнопки "Назад"
+        main_living_button = Button(text="Назад", font_size='14sp', size_hint=(0.2, 0.1), color=(1, 1, 1, 100),
+                                  background_color=(0, 0, 0, 100), pos_hint={'x': 0, 'y': 0.1})
+        main_living_button.bind(on_press=self.go_to_living)
+        self.add_widget(main_living_button)
+
+    def go_to_living(self, *args):
+        # создание экземпляра класса Living Room и отображение его на экране
+        living = Living()
+        self.clear_widgets()
+        self.add_widget(living)
+
+class KondScreen(BoxLayout):
+    def __init__(self, **kwargs):
+        super(KondScreen, self).__init__(**kwargs)
+        self.orientation = "vertical"  # задаем ориентацию элементов
+
+        # добавляем вертикальный BoxLayout для изображений и надписей
+        images_labels_layout = BoxLayout(size_hint=(1, 0.8), padding=200, spacing=150)
+        self.add_widget(images_labels_layout)
+
+        # добавляем контейнер для кондиционера
+        kond_layout = BoxLayout(orientation='vertical', size_hint=(None, None), size=(100, 150))
+        images_labels_layout.add_widget(kond_layout)
+
+        # добавляем  гиф-изображение кондиционера
+        kond_image = AsyncImage(source="kond.gif", size_hint=(None, None), anim_delay= 1/5 , size=(100, 100),pos_hint={'center_x': 0.5})
+        kond_layout.add_widget(kond_image)
+
+        kond_label = Label(text="Вы выбрали кондиционер", font_size='20sp', bold=True, color=(0, 0, 0, 100), size_hint=(None, None),
+                         size=(100, 50), pos_hint={'center_x': 0.5})
+        kond_layout.add_widget(kond_label)
+
+        # добавление кнопки "Назад"
+        main_living_button = Button(text="Назад", font_size='14sp', size_hint=(0.2, 0.1), color=(1, 1, 1, 100),
+                                  background_color=(0, 0, 0, 100), pos_hint={'x': 0, 'y': 0.1})
+        main_living_button.bind(on_press=self.go_to_living)
+        self.add_widget(main_living_button)
+
+    def go_to_living(self, *args):
+        # создание экземпляра класса Living Room и отображение его на экране
+        living = Living()
+        self.clear_widgets()
+        self.add_widget(living)
+
+class AirfreshScreen(BoxLayout):
+    def __init__(self, **kwargs):
+        super(AirfreshScreen, self).__init__(**kwargs)
+        self.orientation = "vertical"  # задаем ориентацию элементов
+
+        # добавляем вертикальный BoxLayout для изображений и надписей
+        images_labels_layout = BoxLayout(size_hint=(1, 0.8), padding=200, spacing=150)
+        self.add_widget(images_labels_layout)
+
+        # добавляем контейнер для освежителя воздуха
+        airfresh_layout = BoxLayout(orientation='vertical', size_hint=(None, None), size=(100, 150))
+        images_labels_layout.add_widget(airfresh_layout)
+
+        # добавляем  гиф-изображение освежителя воздуха
+        airfresh_image = AsyncImage(source="airfresh.gif", size_hint=(None, None), anim_delay= 1/5 , size=(100, 100),pos_hint={'center_x': 0.5})
+        airfresh_layout.add_widget(airfresh_image)
+
+        airfresh_label = Label(text="Вы выбрали освежитель воздуха", font_size='20sp', bold=True, color=(0, 0, 0, 100), size_hint=(None, None),
+                         size=(100, 50), pos_hint={'center_x': 0.5})
+        airfresh_layout.add_widget(airfresh_label)
+
+        # добавление кнопки "Назад"
+        main_living_button = Button(text="Назад", font_size='14sp', size_hint=(0.2, 0.1), color=(1, 1, 1, 100),
+                                  background_color=(0, 0, 0, 100), pos_hint={'x': 0, 'y': 0.1})
+        main_living_button.bind(on_press=self.go_to_living)
+        self.add_widget(main_living_button)
+
+    def go_to_living(self, *args):
+        # создание экземпляра класса Living Room и отображение его на экране
+        living = Living()
+        self.clear_widgets()
+        self.add_widget(living)
+
 class Kitchen(BoxLayout):
     def __init__(self, **kwargs):
         super(Kitchen, self).__init__(**kwargs)
@@ -33,11 +430,7 @@ class Kitchen(BoxLayout):
         images_labels_layout.add_widget(kettle_layout)
 
         # добавляем изображение чайника
-        #kettle_image = Image(source="kettle.png", size_hint=(None, None), size=(100, 100), pos_hint={'center_x': 0.5})
-        #kettle_layout.add_widget(kettle_image)
-
-        # добавляем  гиф-изображение чайника
-        kettle_image = AsyncImage(source="kettle.gif", size_hint=(None, None), anim_delay= 1/5 , size=(100, 100),pos_hint={'center_x': 0.5})
+        kettle_image = Image(source="kettle.png", size_hint=(None, None), size=(100, 100), pos_hint={'center_x': 0.5})
         kettle_layout.add_widget(kettle_image)
 
         # добавляем надпись "чайник"
@@ -55,17 +448,12 @@ class Kitchen(BoxLayout):
         kettle_on_button.bind(on_press=self.turn_on_kettle)
         kettle_buttons_layout.add_widget(kettle_on_button)
 
-
         # добавляем контейнер для конфорки
         burner_layout = BoxLayout(orientation='vertical', size_hint=(None, None), size=(100, 150))
         images_labels_layout.add_widget(burner_layout)
 
         # добавляем изображение конфорки
-        #burner_image = Image(source="burner.png", size_hint=(None, None), size=(100, 100), pos_hint={'center_x': 0.5})
-        #burner_layout.add_widget(burner_image)
-
-        # добавляем  гиф-изображение конфорки
-        burner_image = AsyncImage(source="burner.gif", size_hint=(None, None), anim_delay= 1/5 , size=(100, 100),pos_hint={'center_x': 0.5})
+        burner_image = Image(source="burner.png", size_hint=(None, None), size=(100, 100), pos_hint={'center_x': 0.5})
         burner_layout.add_widget(burner_image)
 
         # добавляем надпись "Конфорка"
@@ -88,11 +476,7 @@ class Kitchen(BoxLayout):
         images_labels_layout.add_widget(fridge_layout)
 
         # добавляем изображение холодильника
-        #fridge_image = Image(source="fridge.png", size_hint=(None, None), size=(200, 100), pos_hint={'center_x': 0.5})
-        #fridge_layout.add_widget(fridge_image)
-
-        # добавляем  гиф-изображение холодильника
-        fridge_image = AsyncImage(source="fridge.gif", size_hint=(None, None), anim_delay= 1/5 , size=(100, 100),pos_hint={'center_x': 0.5})
+        fridge_image = Image(source="fridge.png", size_hint=(None, None), size=(200, 100), pos_hint={'center_x': 0.5})
         fridge_layout.add_widget(fridge_image)
 
         # добавляем надпись "Холодильник"
@@ -116,15 +500,20 @@ class Kitchen(BoxLayout):
         main_menu_button.bind(on_press=self.go_to_main_menu)
         self.add_widget(main_menu_button)
 
-
     def turn_on_kettle(self, instance):
-        print("Чайник выбран")
+        kettle = KettleScreen()
+        self.clear_widgets()
+        self.add_widget(kettle)
 
     def turn_on_burner(self, instance):
-        print("Конфорка выбран")
+        burner = BurnerScreen()
+        self.clear_widgets()
+        self.add_widget(burner)
 
     def turn_on_fridge(self, instance):
-        print("Холодильник выбран")
+        fridge = FridgeScreen()
+        self.clear_widgets()
+        self.add_widget(fridge)
 
     def go_to_main_menu(self, *args):
         # создание экземпляра класса MainMenu и отображение его на экране
@@ -150,11 +539,7 @@ class Garage(BoxLayout):
         images_labels_layout.add_widget(door_layout)
 
         # добавляем изображение гаражной двери
-        #door_image = Image(source="door.png", size_hint=(None, None), size=(100, 100), pos_hint={'center_x': 0.5})
-        #door_layout.add_widget(door_image)
-
-        # добавляем  гиф-изображение гаражной двери
-        door_image = AsyncImage(source="door.gif", size_hint=(None, None), anim_delay= 1/5 , size=(100, 100),pos_hint={'center_x': 0.5})
+        door_image = Image(source="door.png", size_hint=(None, None), size=(100, 100), pos_hint={'center_x': 0.5})
         door_layout.add_widget(door_image)
 
         # добавляем надпись "гаражная дверь"
@@ -177,11 +562,7 @@ class Garage(BoxLayout):
         images_labels_layout.add_widget(column_layout)
 
         # добавляем изображение колонки
-        #column_image = Image(source="column.png", size_hint=(None, None), size=(100, 100), pos_hint={'center_x': 0.5})
-        #column_layout.add_widget(column_image)
-
-        # добавляем  гиф-изображение колонки
-        column_image = AsyncImage(source="column.gif", size_hint=(None, None), anim_delay= 1/5 , size=(100, 100),pos_hint={'center_x': 0.5})
+        column_image = Image(source="column.png", size_hint=(None, None), size=(100, 100), pos_hint={'center_x': 0.5})
         column_layout.add_widget(column_image)
 
         # добавляем надпись "Колонка"
@@ -206,10 +587,14 @@ class Garage(BoxLayout):
         self.add_widget(main_menu_button)
 
     def turn_on_door(self, instance):
-        print("Гаражная дверь выбрана")
+        door = DoorScreen()
+        self.clear_widgets()
+        self.add_widget(door)
 
     def turn_on_column(self, instance):
-        print("Колонка выбрана")
+        column = ColumnScreen()
+        self.clear_widgets()
+        self.add_widget(column)
 
     def go_to_main_menu(self, *args):
         # создание экземпляра класса MainMenu и отображение его на экране
@@ -235,11 +620,7 @@ class Bedroom(BoxLayout):
         images_labels_layout.add_widget(light_layout)
 
         # добавляем изображение света
-        #light_image = Image(source="light.png", size_hint=(None, None), size=(100, 100), pos_hint={'center_x': 0.5})
-        #light_layout.add_widget(light_image)
-
-        # добавляем  гиф-изображение света
-        light_image = AsyncImage(source="light.gif", size_hint=(None, None), anim_delay= 1/5 , size=(100, 100),pos_hint={'center_x': 0.5})
+        light_image = Image(source="light.png", size_hint=(None, None), size=(100, 100), pos_hint={'center_x': 0.5})
         light_layout.add_widget(light_image)
 
         # добавляем надпись "Свет"
@@ -262,11 +643,7 @@ class Bedroom(BoxLayout):
         images_labels_layout.add_widget(humidifier_layout)
 
         # добавляем изображение увлажнителя воздуха
-        #humidifier_image = Image(source="humidifier.png", size_hint=(None, None), size=(100, 100), pos_hint={'center_x': 0.5})
-        #humidifier_layout.add_widget(humidifier_image)
-
-        # добавляем  гиф-изображение увлажнителя воздуха
-        humidifier_image = AsyncImage(source="humidifier.gif", size_hint=(None, None), anim_delay= 1/5 , size=(100, 100),pos_hint={'center_x': 0.5})
+        humidifier_image = Image(source="humidifier.png", size_hint=(None, None), size=(100, 100), pos_hint={'center_x': 0.5})
         humidifier_layout.add_widget(humidifier_image)
 
         # добавляем надпись "Увлажнитель воздуха"
@@ -291,10 +668,14 @@ class Bedroom(BoxLayout):
         self.add_widget(main_menu_button)
 
     def turn_on_light(self, instance):
-        print("Свет выбран")
+        light = LightScreen()
+        self.clear_widgets()
+        self.add_widget(light)
 
     def turn_on_humidifier(self, instance):
-        print("Увлажнитель воздуха выбран")
+        humidifier = HumidifierScreen()
+        self.clear_widgets()
+        self.add_widget(humidifier)
 
     def go_to_main_menu(self, *args):
         # создание экземпляра класса MainMenu и отображение его на экране
@@ -320,11 +701,7 @@ class Bathroom(BoxLayout):
         images_labels_layout.add_widget(tempcontr_layout)
 
         # добавляем изображение датчика температуры воды
-        #tempcontr_image = Image(source="tempcontr.jpg", size_hint=(None, None), size=(100, 100), pos_hint={'center_x': 0.5})
-        #tempcontr_layout.add_widget(tempcontr_image)
-
-        # добавляем  гиф-изображение датчика температуры воды
-        tempcontr_image = AsyncImage(source="tempcontr.gif", size_hint=(None, None), anim_delay= 1/5 , size=(100, 100),pos_hint={'center_x': 0.5})
+        tempcontr_image = Image(source="tempcontr.jpg", size_hint=(None, None), size=(100, 100), pos_hint={'center_x': 0.5})
         tempcontr_layout.add_widget(tempcontr_image)
 
         # добавляем надпись "Датчика температуры воды"
@@ -347,11 +724,7 @@ class Bathroom(BoxLayout):
         images_labels_layout.add_widget(washing_layout)
 
         # добавляем изображение стиральной машины
-        #washing_image = Image(source="washing.png", size_hint=(None, None), size=(150, 150), pos_hint={'center_x': 0.5})
-        #washing_layout.add_widget(washing_image)
-
-        # добавляем  гиф-изображение стиральной машины
-        washing_image = AsyncImage(source="washing.gif", size_hint=(None, None), anim_delay= 1/5 , size=(100, 100),pos_hint={'center_x': 0.5})
+        washing_image = Image(source="washing.png", size_hint=(None, None), size=(150, 150), pos_hint={'center_x': 0.5})
         washing_layout.add_widget(washing_image)
 
         # добавляем надпись "стиральная машина"
@@ -376,10 +749,14 @@ class Bathroom(BoxLayout):
         self.add_widget(main_menu_button)
 
     def turn_on_tempcontr(self, instance):
-        print("Датчик температуры выбран")
+        tempcontr = TempcontrScreen()
+        self.clear_widgets()
+        self.add_widget(tempcontr)
 
     def turn_on_washing(self, instance):
-        print("Стиральная машина выбрана")
+        washing = WashingScreen()
+        self.clear_widgets()
+        self.add_widget(washing)
 
     def go_to_main_menu(self, *args):
         # создание экземпляра класса MainMenu и отображение его на экране
@@ -405,11 +782,7 @@ class Living(BoxLayout):
         images_labels_layout.add_widget(tv_layout)
 
         # добавляем изображение телевизора
-        #tv_image = Image(source="tv.png", size_hint=(None, None), size=(100, 100), pos_hint={'center_x': 0.5})
-        #tv_layout.add_widget(tv_image)
-
-        # добавляем  гиф-изображение телевизора
-        tv_image = AsyncImage(source="tv.gif", size_hint=(None, None), anim_delay= 1/5 , size=(100, 100),pos_hint={'center_x': 0.5})
+        tv_image = Image(source="tv.png", size_hint=(None, None), size=(100, 100), pos_hint={'center_x': 0.5})
         tv_layout.add_widget(tv_image)
 
         # добавляем надпись "Телевизор"
@@ -430,11 +803,7 @@ class Living(BoxLayout):
         images_labels_layout.add_widget(kond_layout)
 
         # добавляем изображение кондиционера
-        #kond_image = Image(source="kond.png", size_hint=(None, None), size=(100, 100), pos_hint={'center_x': 0.5})
-        #kond_layout.add_widget(kond_image)
-
-        # добавляем  гиф-изображение кондиционера
-        kond_image = AsyncImage(source="kond.gif", size_hint=(None, None), anim_delay= 1/5 , size=(100, 100),pos_hint={'center_x': 0.5})
+        kond_image = Image(source="kond.png", size_hint=(None, None), size=(100, 100), pos_hint={'center_x': 0.5})
         kond_layout.add_widget(kond_image)
 
         # добавляем надпись "Кондиционер"
@@ -457,11 +826,7 @@ class Living(BoxLayout):
         images_labels_layout.add_widget(airfresh_layout)
 
         # добавляем изображение освежителя воздуха
-        #airfresh_image = Image(source="airfresh.png", size_hint=(None, None), size=(100, 100), pos_hint={'center_x': 0.5})
-        #airfresh_layout.add_widget(airfresh_image)
-
-        # добавляем  гиф-изображение освежителя воздуха
-        airfresh_image = AsyncImage(source="airfresh.gif", size_hint=(None, None), anim_delay= 1/5 , size=(100, 100),pos_hint={'center_x': 0.5})
+        airfresh_image = Image(source="airfresh.png", size_hint=(None, None), size=(100, 100), pos_hint={'center_x': 0.5})
         airfresh_layout.add_widget(airfresh_image)
 
         # добавляем надпись "освежитель воздуха"
@@ -484,13 +849,19 @@ class Living(BoxLayout):
         self.add_widget(main_menu_button)
 
     def turn_on_tv(self, instance):
-        print("Телевизор выбран")
+        tv = TvScreen()
+        self.clear_widgets()
+        self.add_widget(tv)
 
     def turn_on_kond(self, instance):
-        print("Кондиционер выбран")
+        kond = KondScreen()
+        self.clear_widgets()
+        self.add_widget(kond)
 
     def turn_on_airfresh(self, instance):
-        print("Освежитель воздуха выбран")
+        airfresh = AirfreshScreen()
+        self.clear_widgets()
+        self.add_widget(airfresh)
 
     def go_to_main_menu(self, *args):
         # создание экземпляра класса MainMenu и отображение его на экране
@@ -502,43 +873,41 @@ class MainMenu(BoxLayout):
     def __init__(self, **kwargs):
         super(MainMenu, self).__init__(**kwargs)
 
+        # установка ориентации и размера BoxLayout
+        self.orientation = 'vertical'
+        self.size_hint = (1, 1)
+
         # создание и добавление надписи "Умный дом"
-        label = Label(text="Умный дом", font_size='20sp', bold=True, color=(0, 0, 0, 100),size_hint=(0.2, 0.1),pos_hint = {'x': 0, 'y': 0.9})
+        label = Label(text="Приложение - Умный дом", font_size='20sp', bold=True, color=(0, 0, 0, 100))
         self.add_widget(label)
 
         # создание и добавление кнопки "Кухня"
-        kitchen_button = Button(text="Кухня", font_size='14sp', size_hint=(0.2, 0.1), color=(1, 1, 1, 100),
-                                background_color=(0, 0, 1, 1))
+        kitchen_button = Button(text="Кухня", font_size='14sp',color=(1, 1, 1, 100),background_color=(0, 0, 1, 1))
         kitchen_button.bind(on_press=self.go_to_kitchen)
         self.add_widget(kitchen_button)
 
         # создание и добавление кнопки "Гостиная"
-        living_button = Button(text="Гостиная", font_size='14sp', size_hint=(0.2, 0.1), color=(1, 1, 1, 100),
-                                background_color=(0, 0, 1, 1))
+        living_button = Button(text="Гостиная", font_size='14sp',color=(1, 1, 1, 100),background_color=(0, 0, 1, 1))
         living_button.bind(on_press=self.go_to_living)
         self.add_widget(living_button)
 
         # создание и добавление кнопки "Гараж"
-        garage_button = Button(text="Гараж", font_size='14sp', size_hint=(0.2, 0.1), color=(1, 1, 1, 100),
-                                background_color=(0, 0, 1, 1))
+        garage_button = Button(text="Гараж", font_size='14sp',color=(1, 1, 1, 100),background_color=(0, 0, 1, 1))
         garage_button.bind(on_press=self.go_to_garage)
         self.add_widget(garage_button)
 
         # создание и добавление кнопки "Спальня"
-        bedroom_button = Button(text="Спальня", font_size='14sp', size_hint=(0.2, 0.1), color=(1, 1, 1, 100),
-                                background_color=(0, 0, 1, 1))
+        bedroom_button = Button(text="Спальня", font_size='14sp',color=(1, 1, 1, 100),background_color=(0, 0, 1, 1))
         bedroom_button.bind(on_press=self.go_to_bedroom)
         self.add_widget(bedroom_button)
 
         # создание и добавление кнопки "Санузел"
-        bathroom_button = Button(text="Санузел", font_size='14sp', size_hint=(0.2, 0.1), color=(1, 1, 1, 100),
-                                background_color=(0, 0, 1, 1))
+        bathroom_button = Button(text="Санузел", font_size='14sp',color=(1, 1, 1, 100),background_color=(0, 0, 1, 1))
         bathroom_button.bind(on_press=self.go_to_bathroom)
         self.add_widget(bathroom_button)
 
-        # создание и добавление кнопки выхода в правый верхний угол
-        exit_button = Button(text="Выход", font_size='14sp', size_hint=(0.2, 0.1), color=(1, 1, 1, 100),
-                             background_color=(0, 0, 0, 100),pos_hint = {'x': 0, 'y': 0.9})
+        # создание и добавление кнопки выхода
+        exit_button = Button(text="Выход", font_size='14sp',color=(1, 1, 1, 100),background_color=(0, 0, 0, 100))
         exit_button.bind(on_press=self.exit_app)
         self.add_widget(exit_button)
 
