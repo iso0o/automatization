@@ -873,43 +873,41 @@ class MainMenu(BoxLayout):
     def __init__(self, **kwargs):
         super(MainMenu, self).__init__(**kwargs)
 
+        # установка ориентации и размера BoxLayout
+        self.orientation = 'vertical'
+        self.size_hint = (1, 1)
+
         # создание и добавление надписи "Умный дом"
-        label = Label(text="Умный дом", font_size='20sp', bold=True, color=(0, 0, 0, 100),size_hint=(0.2, 0.1),pos_hint = {'x': 0, 'y': 0.9})
+        label = Label(text="Приложение - Умный дом", font_size='20sp', bold=True, color=(0, 0, 0, 100))
         self.add_widget(label)
 
         # создание и добавление кнопки "Кухня"
-        kitchen_button = Button(text="Кухня", font_size='14sp', size_hint=(0.2, 0.1), color=(1, 1, 1, 100),
-                                background_color=(0, 0, 1, 1))
+        kitchen_button = Button(text="Кухня", font_size='14sp',color=(1, 1, 1, 100),background_color=(0, 0, 1, 1))
         kitchen_button.bind(on_press=self.go_to_kitchen)
         self.add_widget(kitchen_button)
 
         # создание и добавление кнопки "Гостиная"
-        living_button = Button(text="Гостиная", font_size='14sp', size_hint=(0.2, 0.1), color=(1, 1, 1, 100),
-                                background_color=(0, 0, 1, 1))
+        living_button = Button(text="Гостиная", font_size='14sp',color=(1, 1, 1, 100),background_color=(0, 0, 1, 1))
         living_button.bind(on_press=self.go_to_living)
         self.add_widget(living_button)
 
         # создание и добавление кнопки "Гараж"
-        garage_button = Button(text="Гараж", font_size='14sp', size_hint=(0.2, 0.1), color=(1, 1, 1, 100),
-                                background_color=(0, 0, 1, 1))
+        garage_button = Button(text="Гараж", font_size='14sp',color=(1, 1, 1, 100),background_color=(0, 0, 1, 1))
         garage_button.bind(on_press=self.go_to_garage)
         self.add_widget(garage_button)
 
         # создание и добавление кнопки "Спальня"
-        bedroom_button = Button(text="Спальня", font_size='14sp', size_hint=(0.2, 0.1), color=(1, 1, 1, 100),
-                                background_color=(0, 0, 1, 1))
+        bedroom_button = Button(text="Спальня", font_size='14sp',color=(1, 1, 1, 100),background_color=(0, 0, 1, 1))
         bedroom_button.bind(on_press=self.go_to_bedroom)
         self.add_widget(bedroom_button)
 
         # создание и добавление кнопки "Санузел"
-        bathroom_button = Button(text="Санузел", font_size='14sp', size_hint=(0.2, 0.1), color=(1, 1, 1, 100),
-                                background_color=(0, 0, 1, 1))
+        bathroom_button = Button(text="Санузел", font_size='14sp',color=(1, 1, 1, 100),background_color=(0, 0, 1, 1))
         bathroom_button.bind(on_press=self.go_to_bathroom)
         self.add_widget(bathroom_button)
 
-        # создание и добавление кнопки выхода в правый верхний угол
-        exit_button = Button(text="Выход", font_size='14sp', size_hint=(0.2, 0.1), color=(1, 1, 1, 100),
-                             background_color=(0, 0, 0, 100),pos_hint = {'x': 0, 'y': 0.9})
+        # создание и добавление кнопки выхода
+        exit_button = Button(text="Выход", font_size='14sp',color=(1, 1, 1, 100),background_color=(0, 0, 0, 100))
         exit_button.bind(on_press=self.exit_app)
         self.add_widget(exit_button)
 
