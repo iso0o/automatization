@@ -1,4 +1,6 @@
 import kivy
+import paho.mqtt.client as mqtt
+
 
 kivy.require('2.1.0')
 
@@ -11,6 +13,11 @@ from kivy.uix.image import Image
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.image import AsyncImage
 from kivy.clock import Clock
+
+mqtt_client = mqtt.Client()
+mqtt_client.username_pw_set("igor", "3221")
+mqtt_client.connect("192.168.43.17", 1883)
+
 
 Window.clearcolor = (1, 1, 1, 1)  # установка белого фона
 Window.size = (900, 600)
