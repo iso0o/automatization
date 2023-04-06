@@ -1,6 +1,9 @@
 import kivy
+import paho.mqtt.client as mqtt
+
 
 kivy.require('2.1.0')
+
 
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
@@ -10,6 +13,10 @@ from kivy.core.window import Window
 from kivy.uix.image import Image
 from kivy.uix.gridlayout import GridLayout
 
+class MqttClient:
+    mqtt_client = mqtt.Client()
+    mqtt_client.username_pw_set("igor", "3221")
+    mqtt_client.connect("192.168.43.17", 1883, 60)
 
 Window.clearcolor = (1, 1, 1, 1)  # установка белого фона
 Window.size = (900, 600)
@@ -18,7 +25,6 @@ class Kitchen(BoxLayout):
     def __init__(self, **kwargs):
         super(Kitchen, self).__init__(**kwargs)
         self.orientation = "vertical"  # задаем ориентацию элементов
-
         kitchen_label = Label(text="Кухня", font_size='20sp', bold=True, color=(0, 0, 0, 100), size_hint=(None, None),
                          size=(100, 50), pos_hint={'x': 0, 'y': 1})
         self.add_widget(kitchen_label)
@@ -120,9 +126,11 @@ class Kitchen(BoxLayout):
 
     def turn_on_kettle(self, instance):
         print("Чайник включен")
+        client.publish("kitchen/kettle", "Чайник включен!")
 
     def turn_off_kettle(self, instance):
         print("Чайник выключен")
+        client.publish("kitchen/kettle", "Чайник выключен!")
 
     def turn_on_burner(self, instance):
         print("Конфорка включена")
@@ -146,7 +154,7 @@ class Garage(BoxLayout):
     def __init__(self, **kwargs):
         super(Garage, self).__init__(**kwargs)
         self.orientation = "vertical"  # задаем ориентацию элементов
-
+        self.client = mqtt.Client()
         garage_label = Label(text="Гараж", font_size='20sp', bold=True, color=(0, 0, 0, 100), size_hint=(None, None),
                          size=(100, 50), pos_hint={'x': 0, 'y': 1})
         self.add_widget(garage_label)
