@@ -1,6 +1,6 @@
 import kivy
 import paho.mqtt.client as mqtt
-
+import threading
 
 kivy.require('2.1.0')
 
@@ -10,17 +10,24 @@ from kivy.uix.label import Label
 from kivy.uix.button import Button
 from kivy.core.window import Window
 from kivy.uix.image import Image
-from kivy.uix.gridlayout import GridLayout
 from kivy.uix.image import AsyncImage
-from kivy.clock import Clock
 
 mqtt_client = mqtt.Client()
 mqtt_client.username_pw_set("igor", "3221")
 mqtt_client.connect("192.168.43.17", 1883)
 
+def mqtt_loop():
+    mqtt_client.loop_forever()
+
+mqtt_client.username_pw_set("igor", "3221")
+mqtt_client.connect("192.168.43.17", 1883)
+
+mqtt_thread = threading.Thread(target=mqtt_loop)
+mqtt_thread.start()
 
 Window.clearcolor = (1, 1, 1, 1)  # установка белого фона
-Window.size = (900, 600)
+Window.size = (1080, 2340)
+
 
 
 class KettleScreen(BoxLayout):
@@ -950,6 +957,8 @@ class MainMenu(BoxLayout):
 
     def exit_app(self, *args):
         App.get_running_app().stop()  # остановка приложения
+        mqtt_client.disconnect()
+        mqtt_thread.join()
 
 class MyApp(App):
     def build(self):
