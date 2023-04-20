@@ -1,5 +1,7 @@
 import kivy
-
+import paho.mqtt.client as mqtt
+import threading
+import socket
 
 kivy.require('2.1.0')
 
@@ -9,7 +11,21 @@ from kivy.uix.label import Label
 from kivy.uix.button import Button
 from kivy.core.window import Window
 from kivy.uix.image import Image
-from kivy.uix.gridlayout import GridLayout
+
+
+mqtt_client = mqtt.Client()
+
+hostname = socket.gethostname()
+ip_address = socket.gethostbyname(hostname)
+mqtt_client.username_pw_set("igor", "3221")
+mqtt_client.connect(ip_address, 1883)
+
+
+def mqtt_loop():
+    mqtt_client.loop_forever()
+
+mqtt_thread = threading.Thread(target=mqtt_loop)
+mqtt_thread.start()
 
 Window.clearcolor = (1, 1, 1, 1)  # установка белого фона
 Window.size = (900, 600)
@@ -18,7 +34,6 @@ class Kitchen(BoxLayout):
     def __init__(self, **kwargs):
         super(Kitchen, self).__init__(**kwargs)
         self.orientation = "vertical"  # задаем ориентацию элементов
-
         kitchen_label = Label(text="Кухня", font_size='20sp', bold=True, color=(0, 0, 0, 100), size_hint=(None, None),
                          size=(100, 50), pos_hint={'x': 0, 'y': 1})
         self.add_widget(kitchen_label)
@@ -119,22 +134,22 @@ class Kitchen(BoxLayout):
         self.add_widget(main_menu_button)
 
     def turn_on_kettle(self, instance):
-        print("Чайник включен")
+        mqtt_client.publish("kitchen/kettle", "Чайник включен.")
 
     def turn_off_kettle(self, instance):
-        print("Чайник выключен")
+        mqtt_client.publish("kitchen/kettle", "Чайник выключен.")
 
     def turn_on_burner(self, instance):
-        print("Конфорка включена")
+        mqtt_client.publish("kitchen/burner", "Конфорка включена.")
 
     def turn_off_burner(self, instance):
-        print("Конфорка выключена")
+        mqtt_client.publish("kitchen/burner", "Конфорка выключена.")
 
     def turn_on_fridge(self, instance):
-        print("Холодильник включен")
+        mqtt_client.publish("kitchen/fridge", "Холодильник включен.")
 
     def turn_off_fridge(self, instance):
-        print("Холодильник выключен")
+        mqtt_client.publish("kitchen/fridge", "Холодильник выключен.")
 
     def go_to_main_menu(self, *args):
         # создание экземпляра класса MainMenu и отображение его на экране
@@ -146,7 +161,6 @@ class Garage(BoxLayout):
     def __init__(self, **kwargs):
         super(Garage, self).__init__(**kwargs)
         self.orientation = "vertical"  # задаем ориентацию элементов
-
         garage_label = Label(text="Гараж", font_size='20sp', bold=True, color=(0, 0, 0, 100), size_hint=(None, None),
                          size=(100, 50), pos_hint={'x': 0, 'y': 1})
         self.add_widget(garage_label)
@@ -218,16 +232,16 @@ class Garage(BoxLayout):
         self.add_widget(main_menu_button)
 
     def turn_on_door(self, instance):
-        print("Гаражная дверь открыта")
+        mqtt_client.publish("garage/door", "Дверь открыта.")
 
     def turn_off_door(self, instance):
-        print("Гаражная дверь закрыта")
+        mqtt_client.publish("garage/door", "Дверь закрыта.")
 
     def turn_on_column(self, instance):
-        print("Колонка включена")
+        mqtt_client.publish("garage/column", "Колонка включена.")
 
     def turn_off_column(self, instance):
-        print("Колонка выключена")
+        mqtt_client.publish("garage/column", "Колонка выключена.")
 
     def go_to_main_menu(self, *args):
         # создание экземпляра класса MainMenu и отображение его на экране
@@ -311,16 +325,17 @@ class Bedroom(BoxLayout):
         self.add_widget(main_menu_button)
 
     def turn_on_light(self, instance):
-        print("Свет включен")
+        mqtt_client.publish("bedroom/light", "Свет включен.")
+
 
     def turn_off_light(self, instance):
-        print("Свет выключен")
+        mqtt_client.publish("bedroom/light", "Свет выключен.")
 
     def turn_on_humidifier(self, instance):
-        print("Увлажнитель воздуха включен")
+        mqtt_client.publish("bedroom/humidifier", "Освежитель включен.")
 
     def turn_off_humidifier(self, instance):
-        print("Увлажнитель воздуха выключен")
+        mqtt_client.publish("bedroom/humidifier", "Освежитель выключен.")
 
     def go_to_main_menu(self, *args):
         # создание экземпляра класса MainMenu и отображение его на экране
@@ -405,16 +420,16 @@ class Bathroom(BoxLayout):
         self.add_widget(main_menu_button)
 
     def turn_on_tempcontr(self, instance):
-        print("Датчик температуры включен")
+        mqtt_client.publish("bathroom/tempcontr", "Терморегулятор включен." )
 
     def turn_off_tempcontr(self, instance):
-        print("Датчик температуры выключен")
+        mqtt_client.publish("bathroom/tempcontr", "Терморегулятор выключен." )
 
     def turn_on_washing(self, instance):
-        print("Стиральная машина включена")
+        mqtt_client.publish("bathroom/washing", "Стиральная машина включена." )
 
     def turn_off_washing(self, instance):
-        print("Стиральная машина выключена")
+        mqtt_client.publish("bathroom/washing", "Стиральная машина выключена." )
 
 
     def go_to_main_menu(self, *args):
@@ -523,22 +538,22 @@ class Living(BoxLayout):
         self.add_widget(main_menu_button)
 
     def turn_on_tv(self, instance):
-        print("Телевизор включен")
+        mqtt_client.publish("living/tv", "Телевизор включен." )
 
     def turn_off_tv(self, instance):
-        print("Телевизор выключен")
+        mqtt_client.publish("living/tv", "Телевизор выключен." )
 
     def turn_on_kond(self, instance):
-        print("Кондиционер включен")
+        mqtt_client.publish("living/kond", "Кондиционер включен.")
 
     def turn_off_kond(self, instance):
-        print("Кондиционер выключен")
+        mqtt_client.publish("living/kond", "Кондиционер выключен.")
 
     def turn_on_airfresh(self, instance):
-        print("Освежитель воздуха включен")
+        mqtt_client.publish("living/airfresh", "Освежитель воздуха включен.")
 
     def turn_off_airfresh(self, instance):
-        print("Освежитель воздуха выключен")
+        mqtt_client.publish("living/airfresh", "Освежитель воздуха выключен.")
 
     def go_to_main_menu(self, *args):
         # создание экземпляра класса MainMenu и отображение его на экране
@@ -622,6 +637,8 @@ class MainMenu(BoxLayout):
 
     def exit_app(self, *args):
         App.get_running_app().stop()  # остановка приложения
+        mqtt_client.disconnect()
+        mqtt_thread.join()
 
 class MyApp(App):
     def build(self):
