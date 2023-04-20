@@ -31,7 +31,7 @@ mqtt_thread = threading.Thread(target=mqtt_loop)
 mqtt_thread.start()
 
 Window.clearcolor = (1, 1, 1, 1)  # установка белого фона
-Window.size = (900, 600)
+Window.size = (1080, 2340)
 
 
 class KettleScreen(BoxLayout):
