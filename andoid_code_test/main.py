@@ -15,7 +15,7 @@ from kivy.uix.image import AsyncImage
 from kivy.clock import Clock
 from kivy.core.audio import SoundLoader
 
-
+#подключаем mqtt клиент к серверу при запуске программы 
 mqtt_client = mqtt.Client()
 
 hostname = socket.gethostname()
@@ -23,7 +23,7 @@ ip_address = socket.gethostbyname(hostname)
 mqtt_client.username_pw_set("igor", "3221")
 mqtt_client.connect(ip_address, 1883)
 
-
+#запуск отдельного потока для асихронной обработки сообщений + фикса ошибки с вылетом при отправке сообщений
 def mqtt_loop():
     mqtt_client.loop_forever()
 
